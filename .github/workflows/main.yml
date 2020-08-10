@@ -15,17 +15,22 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2   
+      uses: actions/checkout@v2
 
-    - name: RSpec
+    - name: Set up Ruby 2.5
       uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.5'
+
+    - name: RSpec
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     - run: |
+        sudo apt-get -yqq install curl
+        curl https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip -o terraform_0.12.29_linux_amd64.zip
+        unzip terraform_0.12.29_linux_amd64.zip && chmod +x terraform && mv terraform /usr/bin/
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec kitchen test
