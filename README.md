@@ -1,4 +1,4 @@
-# Plantilla Terraform - VPC
+# Terraform Module - VPC
 
 [![Open Source Helpers](https://www.codetriage.com/punkerside/terraform-aws-vpc/badges/users.svg)](https://www.codetriage.com/punkerside/terraform-aws-vpc)
 [![GitHub Issues](https://img.shields.io/github/issues/punkerside/terraform-aws-vpc.svg)](https://github.com/punkerside/terraform-aws-vpc/issues)
@@ -7,7 +7,7 @@
 
 Amazon Virtual Private Cloud (Amazon VPC) le permite crear recursos de AWS en una red virtual que haya definido. Dicha red virtual es prácticamente idéntica a las redes tradicionales que se utilizan en sus propios centros de datos, con los beneficios que supone utilizar la infraestructura escalable de AWS.
 
-## Recursos AWS
+## AWS Resource
 
 Esta plantilla de Terraform, despliega los siguientes recursos:
 
@@ -18,22 +18,22 @@ Esta plantilla de Terraform, despliega los siguientes recursos:
 * Elastic IP Addresses
 * Route Table
 
-## Uso
+## Usage
 
 ```hcl
 module "vpc" {
-  source  = "punkerside/vpc/aws"
-  version = "0.0.2"
+  source     = "punkerside/vpc/aws"
+  version    = "0.0.2"
 
-  project              = "falcon"
-  env                  = "sandbox"
-  cidr_block           = "10.0.0.0/16"
-  cidr_pri             = ["10.0.0.0/18","10.0.64.0/18"]
-  cidr_pub             = ["10.0.128.0/18","10.0.192.0/18"]
+  project    = "falcon"
+  env        = "sandbox"
+  cidr_block = "10.0.0.0/16"
+  cidr_pri   = ["10.0.0.0/18","10.0.64.0/18"]
+  cidr_pub   = ["10.0.128.0/18","10.0.192.0/18"]
 }
 ```
 
-## Ejemplos
+## Example
 
 * [Basic](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/basic)
 * [Full](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/full)
@@ -72,3 +72,21 @@ module "vpc" {
 | name | Nombre de VPC |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Tests
+
+1. Install [rvm](https://rvm.io/rvm/install) and the ruby version specified in the [Gemfile](https://github.com/punkerside/terraform-aws-vpc/tree/master/Gemfile).
+2. Install bundler and the gems from our Gemfile:
+```
+gem install bundler
+bundle install
+```
+3. Test using `bundle exec kitchen test` from the root of the repo.
+
+## Authors
+
+El modulo es mantenido por [Ivan Echegaray](https://github.com/punkerside)
+
+## License
+
+Apache 2 Licensed. See LICENSE for full details.
