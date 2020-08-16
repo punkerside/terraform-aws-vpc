@@ -17,4 +17,4 @@ precommit:
 	@sed -i 's/USERNAME/'$(BUILD_USERNAME)'/g' passwd
 	@sed -i 's/USERID/'$(BUILD_UID)'/g' passwd 
 	@sed -i 's/GROUPID/'$(BUILD_GID)'/g' passwd
-	docker run --rm --network host -u $(BUILD_UID):$(BUILD_GID) -v $(PWD)/passwd:/etc/passwd:ro -v $(PWD):/app punkerside/container-precommit:latest
+	@docker run --rm --network host -u $(BUILD_UID):$(BUILD_GID) -v $(PWD)/passwd:/etc/passwd:ro -v $(PWD):/app punkerside/container-precommit:latest
