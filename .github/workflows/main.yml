@@ -1,15 +1,15 @@
-name: Build
+name: Awspec
 
 on:
   push:
     branches:
-      - master
       - develop
       - release
+      - master
 
 jobs:
   build:
-    name: awspec
+    name: RSpec
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -22,7 +22,7 @@ jobs:
       with:
         ruby-version: '2.5'
 
-    - name: RSpec
+    - name: Kitchen
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,3 +34,19 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec kitchen test
+
+    - name: release
+      if: github.ref == 'refs/heads/develop'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "release"
+        echo "release"
+
+    - name: publish
+      if: github.ref == 'refs/heads/master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "publish"
+        echo "publish"
