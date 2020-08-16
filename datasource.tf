@@ -1,6 +1,6 @@
 # capturar az disponibles
 data "aws_availability_zones" "this" {
-    state = "available"
+  state = "available"
 }
 
 # establecer az utilizadas
