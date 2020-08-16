@@ -38,7 +38,6 @@ jobs:
     - name: release
       if: github.ref == 'refs/heads/develop'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_USER: ${{ secrets.GIT_USER }}
       run: |
         NUM=$(curl -u ${GIT_USER}:${GIT_TOKEN} -H "Content-Type:application/json" -X POST https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls -d '{"title": "release", "head": "develop", "base": "release"}' | jq .number)
@@ -47,7 +46,6 @@ jobs:
     - name: publish
       if: github.ref == 'refs/heads/master'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_USER: ${{ secrets.GIT_USER }}
       run: |
         NUM=$(curl -u ${GIT_USER}:${GIT_TOKEN} -H "Content-Type:application/json" -X POST https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls -d '{"title": "publish", "head": "release", "base": "master"}' | jq .number)
