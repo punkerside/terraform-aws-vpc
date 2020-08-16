@@ -3,6 +3,6 @@ provider "aws" {
 }
 
 module "this" {
-  source  = "../../"
-  env     = "awspec"
+  source = "../../"
+  env    = "awspec"
 }

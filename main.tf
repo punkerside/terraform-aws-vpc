@@ -1,8 +1,8 @@
 # vpc
 resource "aws_vpc" "this" {
   cidr_block           = var.cidr_block
-  enable_dns_support   = true
-  enable_dns_hostnames = true
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = {
     Name    = "${var.project}-${var.env}"
@@ -13,8 +13,8 @@ resource "aws_vpc" "this" {
 
 # eip
 resource "aws_eip" "this" {
-  count   = length(var.cidr_pub)
-  vpc     = true
+  count = length(var.cidr_pub)
+  vpc   = true
 
   tags = {
     Name    = "${var.project}-${var.env}-${element(local.aws_availability_zones, count.index)}"
@@ -43,9 +43,9 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "${var.project}-${var.env}-public-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name                                              = "${var.project}-${var.env}-public-${element(local.aws_availability_zones, count.index)}"
+    Project                                           = var.project
+    Env                                               = var.env
     "kubernetes.io/role/elb"                          = "1"
     "kubernetes.io/cluster/${var.project}-${var.env}" = "shared"
   }
@@ -59,9 +59,9 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name    = "${var.project}-${var.env}-private-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name                                              = "${var.project}-${var.env}-private-${element(local.aws_availability_zones, count.index)}"
+    Project                                           = var.project
+    Env                                               = var.env
     "kubernetes.io/role/internal-elb"                 = "1"
     "kubernetes.io/cluster/${var.project}-${var.env}" = "shared"
   }
@@ -107,7 +107,7 @@ resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = element(aws_nat_gateway.this.*.id, count.index)
   }
 
