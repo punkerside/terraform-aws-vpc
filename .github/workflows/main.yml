@@ -1,4 +1,4 @@
-name: Awspec
+name: Build
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: RSpec
+    name: Default
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -31,7 +31,7 @@ jobs:
         NUM=$(curl -u ${GIT_USER}:${GIT_PASS} -H "Content-Type:application/json" -X POST https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls -d '{"title": "release", "head": "develop", "base": "release"}' | jq .number)
         curl -u ${GIT_USER}:${GIT_PASS} -H "Accept: application/vnd.github.v3+json" -X PUT https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls/${NUM}/merge -d '{"commit_title":"release", "merge_method": "merge"}'
 
-    - name: Kitchen
+    - name: Awspec
       if: github.ref == 'refs/heads/release'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
