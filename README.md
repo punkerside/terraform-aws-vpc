@@ -7,7 +7,7 @@
 
 Amazon Virtual Private Cloud (Amazon VPC) le permite crear recursos de AWS en una red virtual que haya definido. Dicha red virtual es prácticamente idéntica a las redes tradicionales que se utilizan en sus propios centros de datos, con los beneficios que supone utilizar la infraestructura escalable de AWS.
 
-## AWS Resource
+## AWS Resources
 
 Esta plantilla de Terraform, despliega los siguientes recursos:
 
@@ -33,7 +33,7 @@ module "vpc" {
 }
 ```
 
-## Example
+## Examples
 
 * [Basic](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/basic)
 * [Full](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/full)
@@ -43,26 +43,26 @@ module "vpc" {
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.12.7 |
-| aws | ~> 2.57 |
+| terraform | ~> 0.12.29 |
+| aws | ~> 2.65.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.57 |
+| aws | ~> 2.65.0 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| cidr\_block | Segmento CIDR de red | `string` | `"10.0.0.0/16"` | no |
-| cidr\_pri | Segmentos de red privados | `list(string)` | <pre>[<br>  "10.0.0.0/18",<br>  "10.0.64.0/18"<br>]</pre> | no |
-| cidr\_pub | Segmentos de red publicos | `list(string)` | <pre>[<br>  "10.0.128.0/18",<br>  "10.0.192.0/18"<br>]</pre> | no |
-| enable\_dns\_hostnames | Resolucion DNS para hostname | `bool` | `true` | no |
-| enable\_dns\_support | Resolucion DNS | `bool` | `true` | no |
-| env | Nombre del ambiente | `string` | `"sandbox"` | no |
-| project | Nombre del proyecto | `string` | `"falcon"` | no |
+| cidr\_block | CIDR block | `string` | `"10.0.0.0/16"` | no |
+| cidr\_pri | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.0.0/18",<br>  "10.0.64.0/18"<br>]</pre> | no |
+| cidr\_pub | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.128.0/18",<br>  "10.0.192.0/18"<br>]</pre> | no |
+| enable\_dns\_hostnames | Hostname DNS support | `bool` | `true` | no |
+| enable\_dns\_support | DNS support | `bool` | `true` | no |
+| env | Environment name | `string` | `"sandbox"` | no |
+| project | Project's name | `string` | `"falcon"` | no |
 
 ## Outputs
 
