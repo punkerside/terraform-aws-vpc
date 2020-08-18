@@ -4,5 +4,5 @@ provider "aws" {
 
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.2"
+  version = "0.0.4"
 }
