@@ -3,7 +3,7 @@ output "name" {
   value       = "${var.project}-${var.env}"
 }
 
-output "aws_vpc" {
+output "vpc" {
   description = "VPC values"
   value       = aws_vpc.this
 }

@@ -64,8 +64,8 @@ module "vpc" {
 
 | Name | Description |
 |------|-------------|
-| aws\_vpc | VPC values |
 | name | VPC name |
+| vpc | VPC values |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
