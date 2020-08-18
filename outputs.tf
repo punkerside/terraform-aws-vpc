@@ -1,9 +1,9 @@
 output "name" {
-  description = "Nombre de VPC"
+  description = "VPC name"
   value       = "${var.project}-${var.env}"
 }
 
 output "aws_vpc" {
-  description = "Valores de VPC"
+  description = "VPC values"
   value       = aws_vpc.this
 }

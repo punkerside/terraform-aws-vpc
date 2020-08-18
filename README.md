@@ -5,11 +5,7 @@
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Amazon Virtual Private Cloud (Amazon VPC) le permite crear recursos de AWS en una red virtual que haya definido. Dicha red virtual es prácticamente idéntica a las redes tradicionales que se utilizan en sus propios centros de datos, con los beneficios que supone utilizar la infraestructura escalable de AWS.
-
 ## AWS Resources
-
-Esta plantilla de Terraform, despliega los siguientes recursos:
 
 * Virtual Private Cloud
 * Subnet
@@ -68,8 +64,8 @@ module "vpc" {
 
 | Name | Description |
 |------|-------------|
-| aws\_vpc | Valores de VPC |
-| name | Nombre de VPC |
+| aws\_vpc | VPC values |
+| name | VPC name |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -85,7 +81,7 @@ bundle install
 
 ## Authors
 
-El modulo es mantenido por [Ivan Echegaray](https://github.com/punkerside)
+The module is maintained by [Ivan Echegaray](https://github.com/punkerside)
 
 ## License
 
