@@ -43,14 +43,14 @@ module "vpc" {
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.12.29 |
-| aws | ~> 2.65.0 |
+| terraform | ~> 0.13.0 |
+| aws | ~> 3.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.65.0 |
+| aws | ~> 3.5.0 |
 
 ## Inputs
 
