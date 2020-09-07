@@ -69,7 +69,8 @@ module "vpc" {
 | Name | Description |
 |------|-------------|
 | name | VPC name |
-| subnet\_ids | Subnet ids |
+| subnet\_private\_ids | Subnet private ids |
+| subnet\_public\_ids | Subnet public ids |
 | vpc | VPC values |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
