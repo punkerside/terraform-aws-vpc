@@ -68,6 +68,8 @@ module "vpc" {
 
 | Name | Description |
 |------|-------------|
+| cidr\_private | CIDR privates |
+| cidr\_public | CIDR publics |
 | name | VPC name |
 | subnet\_private\_ids | Subnet private ids |
 | subnet\_public\_ids | Subnet public ids |
