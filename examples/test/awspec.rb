@@ -16,7 +16,7 @@ describe vpc(vpc_name.to_s) do
   it { should have_tag('Name').value(vpc_name.to_s) }
   it { should have_tag('Project').value(project_tag.to_s) }
   it { should have_tag('Env').value(env_tag.to_s) }
-  it { should have_route_table("#{vpc_name}") }
+  it { should have_route_table("#{vpc_name}-public") }
   zone_names.each do |az|
     it { should have_route_table("#{vpc_name}-private-#{az}") }
   end
