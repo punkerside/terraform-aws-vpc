@@ -5,10 +5,6 @@
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-<p align="center">
-  <img src="workflow.png">
-</p>
-
 ## AWS Resources
 
 * Virtual Private Cloud

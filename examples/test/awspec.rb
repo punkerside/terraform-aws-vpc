@@ -10,17 +10,13 @@ azs = ec2.describe_availability_zones
 zone_names = azs.to_h[:availability_zones].first(2).map { |az| az[:zone_name] }
 
 describe vpc(vpc_name.to_s) do
-  # validar recurso
   it { should exist }
   it { should be_available }
-  # validar atributos
   it { should have_vpc_attribute('enableDnsHostnames') }
-  # validar tags
   it { should have_tag('Name').value(vpc_name.to_s) }
   it { should have_tag('Project').value(project_tag.to_s) }
   it { should have_tag('Env').value(env_tag.to_s) }
-  # validar tablas de rutas
-  it { should have_route_table("#{vpc_name}-public") }
+  it { should have_route_table("#{vpc_name}") }
   zone_names.each do |az|
     it { should have_route_table("#{vpc_name}-private-#{az}") }
   end
