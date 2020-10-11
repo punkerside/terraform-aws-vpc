@@ -5,27 +5,20 @@
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## AWS Resources
-
-* Virtual Private Cloud
-* Subnet
-* Internet Gateway
-* NAT Gateway
-* Elastic IP Addresses
-* Route Table
-
 ## Usage
 
 ```hcl
 module "vpc" {
-  source     = "punkerside/vpc/aws"
-  version    = "0.0.4"
+  source  = "punkerside/vpc/aws"
+  version = "0.0.7"
 
-  project    = "falcon"
-  env        = "sandbox"
-  cidr_block = "10.0.0.0/16"
-  cidr_pri   = ["10.0.0.0/18","10.0.64.0/18"]
-  cidr_pub   = ["10.0.128.0/18","10.0.192.0/18"]
+  project              = "falcon"
+  env                  = "sandbox"
+  cidr_block           = "10.0.0.0/16"
+  cidr_pri             = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
+  cidr_pub             = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
+  enable_dns_support   = true
+  enable_dns_hostnames = true
 }
 ```
 
@@ -53,20 +46,17 @@ module "vpc" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cidr\_block | CIDR block | `string` | `"10.0.0.0/16"` | no |
-| cidr\_pri | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.0.0/18",<br>  "10.0.64.0/18"<br>]</pre> | no |
-| cidr\_pub | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.128.0/18",<br>  "10.0.192.0/18"<br>]</pre> | no |
+| cidr\_pri | CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.0.0/19",<br>  "10.0.32.0/19",<br>  "10.0.64.0/19"<br>]</pre> | no |
+| cidr\_pub | CIDR blocks for public subnets | `list(string)` | <pre>[<br>  "10.0.96.0/19",<br>  "10.0.128.0/19",<br>  "10.0.160.0/19"<br>]</pre> | no |
 | enable\_dns\_hostnames | Hostname DNS support | `bool` | `true` | no |
 | enable\_dns\_support | DNS support | `bool` | `true` | no |
-| env | Environment name | `string` | `"sandbox"` | no |
-| project | Project's name | `string` | `"falcon"` | no |
+| env | Environment name | `string` | n/a | yes |
+| project | Project's name | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cidr\_private | CIDR privates |
-| cidr\_public | CIDR publics |
-| name | VPC name |
 | subnet\_private\_ids | Subnet private ids |
 | subnet\_public\_ids | Subnet public ids |
 | vpc | VPC values |

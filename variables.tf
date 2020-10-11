@@ -1,13 +1,11 @@
 variable "project" {
   description = "Project's name"
   type        = string
-  default     = "falcon"
 }
 
 variable "env" {
   description = "Environment name"
   type        = string
-  default     = "sandbox"
 }
 
 variable "cidr_block" {

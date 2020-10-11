@@ -5,4 +5,7 @@ provider "aws" {
 module "vpc" {
   source  = "punkerside/vpc/aws"
   version = "0.0.7"
+
+  project = "falcon"
+  env     = "sandbox"
 }
