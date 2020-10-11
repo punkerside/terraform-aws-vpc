@@ -2,6 +2,7 @@
 driver:
   name: "terraform"
   root_module_directory: "examples/test"
+  command_timeout: 3600
 
 provisioner:
   name: "terraform"
