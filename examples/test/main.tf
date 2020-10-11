@@ -5,5 +5,5 @@ provider "aws" {
 module "this" {
   source  = "../../"
   project = "falcon"
-  env     = "sandbox"
+  env     = "awspec"
 }
