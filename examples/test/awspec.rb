@@ -1,9 +1,7 @@
 require 'awspec'
 require 'aws-sdk'
 
-vpc_name = 'falcon-awspec'
-env_tag = 'awspec'
-project_tag = 'falcon'
+vpc_name = `cd test/awspec/ && terraform output name`.strip.delete('"')
 
 ec2 = Aws::EC2::Client.new()
 azs = ec2.describe_availability_zones
@@ -14,8 +12,6 @@ describe vpc(vpc_name.to_s) do
   it { should be_available }
   it { should have_vpc_attribute('enableDnsHostnames') }
   it { should have_tag('Name').value(vpc_name.to_s) }
-  it { should have_tag('Project').value(project_tag.to_s) }
-  it { should have_tag('Env').value(env_tag.to_s) }
   it { should have_route_table("#{vpc_name}-public") }
   zone_names.each do |az|
     it { should have_route_table("#{vpc_name}-private-#{az}") }

@@ -5,9 +5,7 @@ resource "aws_vpc" "this" {
   enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = {
-    Name    = "${var.project}-${var.env}"
-    Project = var.project
-    Env     = var.env
+    Name = var.name == null ? random_string.this.result : var.name
   }
 }
 
@@ -17,9 +15,7 @@ resource "aws_eip" "this" {
   vpc   = true
 
   tags = {
-    Name    = "${var.project}-${var.env}-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-${element(local.aws_availability_zones, count.index)}"
   }
 }
 
@@ -28,9 +24,7 @@ resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
   tags = {
-    Name    = "${var.project}-${var.env}"
-    Project = var.project
-    Env     = var.env
+    Name = var.name == null ? random_string.this.result : var.name
   }
 }
 
@@ -43,9 +37,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "${var.project}-${var.env}-public-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-public-${element(local.aws_availability_zones, count.index)}"
   }
 }
 
@@ -57,9 +49,7 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name    = "${var.project}-${var.env}-private-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-private-${element(local.aws_availability_zones, count.index)}"
   }
 }
 
@@ -70,9 +60,7 @@ resource "aws_nat_gateway" "this" {
   subnet_id     = element(aws_subnet.public.*.id, count.index)
 
   tags = {
-    Name    = "${var.project}-${var.env}-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-${element(local.aws_availability_zones, count.index)}"
   }
 }
 
@@ -86,9 +74,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name    = "${var.project}-${var.env}-public"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-public"
   }
 }
 
@@ -108,9 +94,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name    = "${var.project}-${var.env}-private-${element(local.aws_availability_zones, count.index)}"
-    Project = var.project
-    Env     = var.env
+    Name = "${var.name == null ? random_string.this.result : var.name}-private-${element(local.aws_availability_zones, count.index)}"
   }
 }
 
