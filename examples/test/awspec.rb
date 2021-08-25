@@ -11,9 +11,4 @@ describe vpc(vpc_name.to_s) do
   it { should exist }
   it { should be_available }
   it { should have_vpc_attribute('enableDnsHostnames') }
-  it { should have_tag('Name').value(vpc_name.to_s) }
-  it { should have_route_table("#{vpc_name}-public") }
-  zone_names.each do |az|
-    it { should have_route_table("#{vpc_name}-private-#{az}") }
-  end
 end
