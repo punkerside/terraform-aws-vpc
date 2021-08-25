@@ -3,7 +3,5 @@ provider "aws" {
 }
 
 module "this" {
-  source  = "../../"
-  project = "falcon"
-  env     = "awspec"
+  source = "../../"
 }

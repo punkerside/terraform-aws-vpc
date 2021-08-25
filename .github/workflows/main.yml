@@ -17,10 +17,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up Ruby 2.5
+    - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: '2.5'
+        ruby-version: '2.6'
 
     - name: release
       if: github.ref == 'refs/heads/develop'
@@ -39,8 +39,8 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
         sudo apt-get -yqq install curl
-        curl https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip -o terraform_0.13.2_linux_amd64.zip
-        unzip terraform_0.13.2_linux_amd64.zip && chmod +x terraform && sudo mv terraform /usr/bin/
+        curl https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip -o terraform_0.15.4_linux_amd64.zip
+        unzip terraform_0.15.4_linux_amd64.zip && chmod +x terraform && sudo mv terraform /usr/bin/
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec kitchen test

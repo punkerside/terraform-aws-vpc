@@ -1,4 +1,4 @@
-output "vpc_id" {
+output "name" {
   value = module.this.vpc.id
 }
 
