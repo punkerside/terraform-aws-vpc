@@ -1,7 +1,7 @@
 require 'awspec'
 require 'aws-sdk'
 
-vpc_name = `cd test/awspec/ && terraform output name`.strip.delete('"')
+vpc_name = `cd examples/test/ && terraform output name`.strip.delete('"')
 
 ec2 = Aws::EC2::Client.new()
 azs = ec2.describe_availability_zones
