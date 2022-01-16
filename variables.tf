@@ -33,3 +33,9 @@ variable "enable_dns_hostnames" {
   type        = bool
   default     = true
 }
+
+variable "tags" {
+  description = "Etiquetas asociadas a los recursos creados"
+  type        = map(string)
+  default     = {}
+}
