@@ -4,19 +4,19 @@ variable "name" {
   default     = null
 }
 
-variable "cidr_block" {
+variable "cidr_block_vpc" {
   description = "Bloque CIDR"
   type        = string
   default     = "10.0.0.0/16"
 }
 
-variable "cidr_pri" {
+variable "cidr_block_pri" {
   description = "Segmentos de redes privadas"
   type        = list(string)
   default     = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
 }
 
-variable "cidr_pub" {
+variable "cidr_block_pub" {
   description = "Segmentos de redes publicas"
   type        = list(string)
   default     = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
@@ -32,10 +32,4 @@ variable "enable_dns_hostnames" {
   description = "Activar DNS Hostname"
   type        = bool
   default     = true
-}
-
-variable "tags" {
-  description = "Etiquetas asociadas a los recursos creados"
-  type        = map(string)
-  default     = {}
 }
