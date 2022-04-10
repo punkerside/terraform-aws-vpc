@@ -4,9 +4,7 @@ resource "aws_vpc" "this" {
   enable_dns_support   = var.enable_dns_support
   enable_dns_hostnames = var.enable_dns_hostnames
 
-  tags = {
-    Name = var.name == null ? random_string.this.result : var.name
-  }
+  tags = var.tags
 }
 
 # eip
@@ -14,18 +12,14 @@ resource "aws_eip" "this" {
   count = length(var.cidr_pub)
   vpc   = true
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-${element(local.aws_availability_zones, count.index)}"
-  }
+  tags = var.tags
 }
 
 # internet gateway
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
-  tags = {
-    Name = var.name == null ? random_string.this.result : var.name
-  }
+  tags = var.tags
 }
 
 # subnet
@@ -36,9 +30,7 @@ resource "aws_subnet" "public" {
   availability_zone       = element(local.aws_availability_zones, count.index)
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-public-${element(local.aws_availability_zones, count.index)}"
-  }
+  tags = var.tags
 }
 
 resource "aws_subnet" "private" {
@@ -48,9 +40,7 @@ resource "aws_subnet" "private" {
   availability_zone       = element(local.aws_availability_zones, count.index)
   map_public_ip_on_launch = false
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-private-${element(local.aws_availability_zones, count.index)}"
-  }
+  tags = var.tags
 }
 
 # nat gateway
@@ -59,9 +49,7 @@ resource "aws_nat_gateway" "this" {
   allocation_id = element(aws_eip.this.*.id, count.index)
   subnet_id     = element(aws_subnet.public.*.id, count.index)
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-${element(local.aws_availability_zones, count.index)}"
-  }
+  tags = var.tags
 }
 
 # route table
@@ -73,9 +61,7 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.this.id
   }
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-public"
-  }
+  tags = var.tags
 }
 
 resource "aws_route_table_association" "public" {
@@ -93,9 +79,7 @@ resource "aws_route_table" "private" {
     nat_gateway_id = element(aws_nat_gateway.this.*.id, count.index)
   }
 
-  tags = {
-    Name = "${var.name == null ? random_string.this.result : var.name}-private-${element(local.aws_availability_zones, count.index)}"
-  }
+  tags = var.tags
 }
 
 resource "aws_route_table_association" "private" {

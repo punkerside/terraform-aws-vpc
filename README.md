@@ -10,7 +10,7 @@
 ```hcl
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.9"
+  version = "0.0.10"
 
   name                 = "falcon"
   cidr_block           = "10.0.0.0/16"
@@ -32,14 +32,14 @@ module "vpc" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.19 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.68.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.55.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.68.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -72,6 +72,7 @@ No modules.
 | <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | Activar DNS Hostname | `bool` | `true` | no |
 | <a name="input_enable_dns_support"></a> [enable\_dns\_support](#input\_enable\_dns\_support) | Soporte DNS | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | Nombre asignado a todos los recursos creados por esta plantilla | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Etiquetas asociadas a los recursos creados | `map(string)` | `{}` | no |
 
 ## Outputs
 
@@ -91,6 +92,12 @@ gem install bundler
 bundle install
 ```
 3. Test using `bundle exec kitchen test` from the root of the repo.
+
+## Docs
+
+```sh
+pre-commit run -a
+```
 
 ## Authors
 
