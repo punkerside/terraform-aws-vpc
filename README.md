@@ -13,11 +13,9 @@ module "vpc" {
   version = "0.0.10"
 
   name                 = "falcon"
-  cidr_block           = "10.0.0.0/16"
-  cidr_pri             = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
-  cidr_pub             = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
-  enable_dns_support   = true
-  enable_dns_hostnames = true
+  cidr_block_vpc       = "10.0.0.0/16"
+  cidr_block_pri       = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
+  cidr_block_pub       = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
 }
 ```
 
@@ -33,13 +31,14 @@ module "vpc" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.68.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.68.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.9.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.2 |
 
 ## Modules
 
@@ -66,21 +65,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | Bloque CIDR | `string` | `"10.0.0.0/16"` | no |
-| <a name="input_cidr_pri"></a> [cidr\_pri](#input\_cidr\_pri) | Segmentos de redes privadas | `list(string)` | <pre>[<br>  "10.0.0.0/19",<br>  "10.0.32.0/19",<br>  "10.0.64.0/19"<br>]</pre> | no |
-| <a name="input_cidr_pub"></a> [cidr\_pub](#input\_cidr\_pub) | Segmentos de redes publicas | `list(string)` | <pre>[<br>  "10.0.96.0/19",<br>  "10.0.128.0/19",<br>  "10.0.160.0/19"<br>]</pre> | no |
+| <a name="input_cidr_block_pri"></a> [cidr\_block\_pri](#input\_cidr\_block\_pri) | Segmentos de redes privadas | `list(string)` | <pre>[<br>  "10.0.0.0/19",<br>  "10.0.32.0/19",<br>  "10.0.64.0/19"<br>]</pre> | no |
+| <a name="input_cidr_block_pub"></a> [cidr\_block\_pub](#input\_cidr\_block\_pub) | Segmentos de redes publicas | `list(string)` | <pre>[<br>  "10.0.96.0/19",<br>  "10.0.128.0/19",<br>  "10.0.160.0/19"<br>]</pre> | no |
+| <a name="input_cidr_block_vpc"></a> [cidr\_block\_vpc](#input\_cidr\_block\_vpc) | Bloque CIDR | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | Activar DNS Hostname | `bool` | `true` | no |
 | <a name="input_enable_dns_support"></a> [enable\_dns\_support](#input\_enable\_dns\_support) | Soporte DNS | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | Nombre asignado a todos los recursos creados por esta plantilla | `string` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Etiquetas asociadas a los recursos creados | `map(string)` | `{}` | no |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_subnet_private_ids"></a> [subnet\_private\_ids](#output\_subnet\_private\_ids) | Subnet private ids |
-| <a name="output_subnet_public_ids"></a> [subnet\_public\_ids](#output\_subnet\_public\_ids) | Subnet public ids |
-| <a name="output_vpc"></a> [vpc](#output\_vpc) | VPC values |
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Tests
