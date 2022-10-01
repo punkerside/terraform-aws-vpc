@@ -1,5 +1,6 @@
 # Terraform Module - VPC
 
+[![Build](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml)
 [![Open Source Helpers](https://www.codetriage.com/punkerside/terraform-aws-vpc/badges/users.svg)](https://www.codetriage.com/punkerside/terraform-aws-vpc)
 [![GitHub Issues](https://img.shields.io/github/issues/punkerside/terraform-aws-vpc.svg)](https://github.com/punkerside/terraform-aws-vpc/issues)
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
@@ -10,12 +11,12 @@
 ```hcl
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.10"
+  version = "0.0.11"
 
-  name                 = "falcon"
-  cidr_block_vpc       = "10.0.0.0/16"
-  cidr_block_pri       = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
-  cidr_block_pub       = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
+  name           = "falcon"
+  cidr_block_vpc = "10.0.0.0/16"
+  cidr_block_pri = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
+  cidr_block_pub = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
 }
 ```
 
@@ -37,8 +38,8 @@ module "vpc" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.9.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.68.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.2 |
 
 ## Modules
 
@@ -74,7 +75,11 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_subnet_private_ids"></a> [subnet\_private\_ids](#output\_subnet\_private\_ids) | Subnet private ids |
+| <a name="output_subnet_public_ids"></a> [subnet\_public\_ids](#output\_subnet\_public\_ids) | Subnet public ids |
+| <a name="output_vpc"></a> [vpc](#output\_vpc) | VPC values |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Tests
