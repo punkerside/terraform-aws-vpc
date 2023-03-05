@@ -4,14 +4,14 @@
 [![Open Source Helpers](https://www.codetriage.com/punkerside/terraform-aws-vpc/badges/users.svg)](https://www.codetriage.com/punkerside/terraform-aws-vpc)
 [![GitHub Issues](https://img.shields.io/github/issues/punkerside/terraform-aws-vpc.svg)](https://github.com/punkerside/terraform-aws-vpc/issues)
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/punkerside/terraform-aws-vpc)
 
 ## Usage
 
 ```hcl
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.11"
+  version = "0.0.12"
 
   name           = "falcon"
   cidr_block_vpc = "10.0.0.0/16"
@@ -101,7 +101,3 @@ pre-commit run -a
 ## Authors
 
 The module is maintained by [Ivan Echegaray](https://github.com/punkerside)
-
-## License
-
-Apache 2 Licensed. See LICENSE for full details.

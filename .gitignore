@@ -2,3 +2,4 @@
 passwd
 .cache/
 .local/
+.titan-bash/
