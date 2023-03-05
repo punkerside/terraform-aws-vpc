@@ -1,6 +1,6 @@
 # Terraform Module - VPC
 
-[![Build](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml)
+[![Build](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/punkerside/terraform-aws-vpc/actions/workflows/main.yml)
 [![Open Source Helpers](https://www.codetriage.com/punkerside/terraform-aws-vpc/badges/users.svg)](https://www.codetriage.com/punkerside/terraform-aws-vpc)
 [![GitHub Issues](https://img.shields.io/github/issues/punkerside/terraform-aws-vpc.svg)](https://github.com/punkerside/terraform-aws-vpc/issues)
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
@@ -22,8 +22,8 @@ module "vpc" {
 
 ## Examples
 
-* [Basic](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/basic)
-* [Full](https://github.com/punkerside/terraform-aws-vpc/tree/master/examples/full)
+* [Basic](https://github.com/punkerside/terraform-aws-vpc/tree/main/examples/basic)
+* [Full](https://github.com/punkerside/terraform-aws-vpc/tree/main/examples/full)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -84,7 +84,7 @@ No modules.
 
 ## Tests
 
-1. Install [rvm](https://rvm.io/rvm/install) and the ruby version specified in the [Gemfile](https://github.com/punkerside/terraform-aws-vpc/tree/master/Gemfile).
+1. Install [rvm](https://rvm.io/rvm/install) and the ruby version specified in the [Gemfile](https://github.com/punkerside/terraform-aws-vpc/tree/main/Gemfile).
 2. Install bundler and the gems from our Gemfile:
 ```
 gem install bundler

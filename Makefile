@@ -1,7 +1,23 @@
-BUILD_UID  = $(shell id -u)
-BUILD_GID  = $(shell id -g)
-BUILD_USER = $(shell whoami)
+SHELL = /bin/bash
 
-precommit:
-	@echo '${BUILD_USER}:x:${BUILD_UID}:${BUILD_GID}::/app:/sbin/nologin' > passwd
-	@docker run --rm --network host -u $(BUILD_UID):$(BUILD_GID) -v $(PWD)/passwd:/etc/passwd:ro -v $(PWD):/app punkerside/container-precommit:latest
+GIT_OWNER  = punkerside
+GIT_REPO   = titan-bash
+GIT_BRANCH = main
+REP_HOME   = $(shell echo "$(shell pwd | rev | cut -d "/" -f1 | rev)")
+
+# configurando directorio
+ifeq ($(REP_HOME),${GIT_REPO})
+GIT_HOME = $(shell echo "$(PWD)")
+else
+GIT_HOME = $(shell echo "$(PWD)/.${GIT_REPO}")
+endif
+
+init:
+	@rm -rf .${GIT_REPO}/
+	@git clone git@github.com:${GIT_OWNER}/${GIT_REPO}.git -b ${GIT_BRANCH} .${GIT_REPO}
+
+# necesario para validaciones del repositorio titan
+-include makefiles/*.mk
+
+# necesario para la carga de procesos en repositorios clientes
+-include .${GIT_REPO}/makefiles/*.mk
