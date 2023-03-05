@@ -1,55 +1,35 @@
-name: Build
+name: Pipeline
 
 on:
   push:
     branches:
-      - develop
-      - release
-      - master
+      - main
+
+env:
+  DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+  DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+  GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 jobs:
-  build:
+  Pipeline:
     name: Default
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 40
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Set up Ruby 3.0.3
-      uses: ruby/setup-ruby@v1
+    - name: Reusing Workflows
+      uses: actions/checkout@v3
       with:
-        ruby-version: '3.0.3'
+        repository: punkerside/titan-bash
+        ref: main
+        path: .titan-bash/
 
-    - name: release
-      if: github.ref == 'refs/heads/develop'
-      env:
-        GIT_USER: ${{ secrets.GIT_USER }}
-        GIT_PASS: ${{ secrets.GIT_PASS }}
-      run: |
-        NUM=$(curl -u ${GIT_USER}:${GIT_PASS} -H "Content-Type:application/json" -X POST https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls -d '{"title": "release", "head": "develop", "base": "release"}' | jq .number)
-        curl -u ${GIT_USER}:${GIT_PASS} -H "Accept: application/vnd.github.v3+json" -X PUT https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls/${NUM}/merge -d '{"commit_title":"release", "merge_method": "merge"}'
-
-    - name: Awspec
-      if: github.ref == 'refs/heads/release'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      run: |
-        sudo apt-get -yqq install curl
-        curl https://releases.hashicorp.com/terraform/1.1.8/terraform_1.1.8_linux_amd64.zip -o terraform_1.1.8_linux_amd64.zip
-        unzip terraform_1.1.8_linux_amd64.zip && chmod +x terraform && sudo mv terraform /usr/bin/
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec kitchen test
-
-    - name: publish
-      if: github.ref == 'refs/heads/release'
-      env:
-        GIT_USER: ${{ secrets.GIT_USER }}
-        GIT_PASS: ${{ secrets.GIT_PASS }}
-      run: |
-        NUM=$(curl -u ${GIT_USER}:${GIT_PASS} -H "Content-Type:application/json" -X POST https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls -d '{"title": "publish", "head": "release", "base": "master"}' | jq .number)
-        curl -u ${GIT_USER}:${GIT_PASS} -H "Accept: application/vnd.github.v3+json" -X PUT https://api.github.com/repos/punkerside/terraform-aws-vpc/pulls/${NUM}/merge -d '{"commit_title" : "publish", "merge_method": "merge"}'
+    - name: Build
+      uses: ./.titan-bash/pipelines/module/github
+      with:
+        DOCKERHUB_USER: ${DOCKERHUB_USER}
+        DOCKERHUB_PASS: ${DOCKERHUB_PASS}
+        GIT_TOKEN: ${GIT_TOKEN}
