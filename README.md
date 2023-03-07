@@ -11,7 +11,7 @@
 ```hcl
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.12"
+  version = "0.0.4"
 
   name           = "falcon"
   cidr_block_vpc = "10.0.0.0/16"
