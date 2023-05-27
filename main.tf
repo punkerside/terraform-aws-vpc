@@ -11,8 +11,8 @@ resource "aws_vpc" "this" {
 
 # eip
 resource "aws_eip" "this" {
-  count = length(var.cidr_block_pri)
-  vpc   = true
+  count  = length(var.cidr_block_pri)
+  domain = "vpc"
 
   tags = {
     Name = var.name == null ? "${random_string.this.result}-${element(local.aws_availability_zones, count.index)}" : "${var.name}-${element(local.aws_availability_zones, count.index)}"
