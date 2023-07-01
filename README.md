@@ -11,9 +11,9 @@
 ```hcl
 module "vpc" {
   source  = "punkerside/vpc/aws"
-  version = "0.0.4"
+  version = "0.0.6"
 
-  name           = "falcon"
+  name           = "titan"
   cidr_block_vpc = "10.0.0.0/16"
   cidr_block_pri = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
   cidr_block_pub = ["10.0.96.0/19", "10.0.128.0/19", "10.0.160.0/19"]
@@ -30,16 +30,16 @@ module "vpc" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.68.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.2 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.68.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 3.5.0 |
 
 ## Modules
 
@@ -84,18 +84,29 @@ No modules.
 
 ## Tests
 
-1. Install [rvm](https://rvm.io/rvm/install) and the ruby version specified in the [Gemfile](https://github.com/punkerside/terraform-aws-vpc/tree/main/Gemfile).
-2. Install bundler and the gems from our Gemfile:
+1. Inicializar automatizacion:
+
+```sh
+make init
 ```
-gem install bundler
-bundle install
+
+2. Establecer credenciales:
+
+```sh
+export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 ```
-3. Test using `bundle exec kitchen test` from the root of the repo.
+
+3. Ejecutar pruebas:
+
+```sh
+make test_awspec
+```
 
 ## Docs
 
 ```sh
-pre-commit run -a
+make test_precommit
 ```
 
 ## Authors

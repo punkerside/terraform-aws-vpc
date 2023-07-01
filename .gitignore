@@ -5,3 +5,4 @@ passwd
 .titan-bash/
 .kitchen/
 Gemfile.lock
+.script/
