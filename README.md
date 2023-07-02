@@ -6,7 +6,6 @@
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/terraform-aws-vpc.svg?style=plastic)](https://github.com/punkerside/terraform-aws-vpc/tags/)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/punkerside/terraform-aws-vpc)
 
-
 ## Usage
 
 ```hcl
