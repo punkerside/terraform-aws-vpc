@@ -5,14 +5,14 @@ on:
     branches:
       - main
 
-# env:
-#   DOCKERHUB_USER: 
-#   DOCKERHUB_PASS: 
-#   GIT_TOKEN: 
-#   SNYK_TOKEN: 
-#   AWS_ACCESS_KEY_ID: 
-#   AWS_SECRET_ACCESS_KEY: 
-#   AWS_DEFAULT_REGION: 
+env:
+  DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+  DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+  GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
 jobs:
   Pipeline:
@@ -34,10 +34,10 @@ jobs:
     - name: Build
       uses: ./.script/pipelines/module/github
       with:
-        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-        DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
-        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        DOCKERHUB_USER: ${DOCKERHUB_USER}
+        DOCKERHUB_PASS: ${DOCKERHUB_PASS}
+        GIT_TOKEN: ${GIT_TOKEN}
+        SNYK_TOKEN: ${SNYK_TOKEN}
+        AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
