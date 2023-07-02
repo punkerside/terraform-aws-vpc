@@ -6,3 +6,4 @@ passwd
 .kitchen/
 Gemfile.lock
 .script/
+.config/

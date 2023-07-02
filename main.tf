@@ -49,7 +49,7 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = element(var.cidr_block_pub, count.index)
   availability_zone       = element(local.aws_availability_zones, count.index)
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
 
   tags = {
     Name                                                                               = var.name == null ? "${random_string.this.result}-public-${element(local.aws_availability_zones, count.index)}" : "${var.name}-public-${element(local.aws_availability_zones, count.index)}"
